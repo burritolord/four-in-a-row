@@ -123,6 +123,16 @@ public class Board {
         
         return false;
     }
+
+    public boolean isTie(){
+    	int sum = 0;
+	for(int i = 0; i < heightPosition.length; i++){
+	    sum += heightPosition[i];
+	}
+	if(-7 == sum)
+	    return true;
+	return false;
+    }
     
     public int getHeight(int column){
         return heightPosition[column];

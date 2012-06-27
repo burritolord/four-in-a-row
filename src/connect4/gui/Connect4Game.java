@@ -54,7 +54,6 @@ public class Connect4Game extends JFrame implements WindowListener{
     @Override
     public void windowDeactivated(WindowEvent e){
         board.pauseGame();
-        System.out.println("paused");
     }
     
     @Override
@@ -65,7 +64,6 @@ public class Connect4Game extends JFrame implements WindowListener{
     @Override
     public void windowIconified(WindowEvent e){
         board.pauseGame();
-        System.out.println("paused");
     }
     
     @Override

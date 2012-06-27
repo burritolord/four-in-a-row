@@ -28,6 +28,7 @@ public class BoardPanel extends JPanel implements Runnable{
        
     private volatile int currentPlayer;
     private volatile boolean falling;
+    private boolean isTie;
     private volatile boolean running;   // stops animation
     private volatile boolean gameOver;  // for game termination
     private volatile boolean isPaused;
@@ -44,6 +45,7 @@ public class BoardPanel extends JPanel implements Runnable{
         currentPlayer = 0;
         running = true;
         falling = false;
+	isTie = false;
         gameOver = false;
         isPaused = false;
         initGui();
@@ -153,6 +155,10 @@ public class BoardPanel extends JPanel implements Runnable{
                 if(board.checkWinCondition(column)){
                     gameOver = true;
                 }
+		else if(board.isTie()){
+                    gameOver = true;
+		    isTie = true;
+		}
                 else{
                     currentPlayer = (currentPlayer + 1) % 2;
                 }
@@ -187,7 +193,12 @@ public class BoardPanel extends JPanel implements Runnable{
         board.draw(dbg,players);      
         
         if(gameOver){
-            JOptionPane.showMessageDialog(null, "Player " + (currentPlayer+1) + " won!");
+	    if(isTie){
+	        JOptionPane.showMessageDialog(null, "Tie");
+	    }
+	    else{
+                JOptionPane.showMessageDialog(null, "Player " + (currentPlayer+1) + " won!");
+	    }
             board.clear();
             gameOver = false;
         }
