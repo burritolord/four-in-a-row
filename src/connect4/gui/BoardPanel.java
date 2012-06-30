@@ -1,17 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package connect4.gui;
 import connectfour.Board;
 import connectfour.GamePiece;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-/**
- *
- * @author zesty
- */
+
 public class BoardPanel extends JPanel implements Runnable{
     public static final int SIZE = 100;
     private final int SPEED = 10;
@@ -57,6 +50,9 @@ public class BoardPanel extends JPanel implements Runnable{
         startGame();
     }
     
+    /*
+    * Initialize gui components
+    */
     public void initGui(){
         MouseAdapt mouse = new MouseAdapt();
         
@@ -71,6 +67,9 @@ public class BoardPanel extends JPanel implements Runnable{
         setSize(new Dimension(PWIDTH,PHEIGHT));
     }
     
+    /*
+     * Start animation thread
+     */
     private void startGame(){
         if(animator == null || !running){
             animator = new Thread(this);
@@ -90,15 +89,9 @@ public class BoardPanel extends JPanel implements Runnable{
         isPaused = false;
     }
     
-    @Override
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
-        if(dbImage != null){
-            g.drawImage(dbImage,0,0,null);
-            Toolkit.getDefaultToolkit().sync();
-        }
-    }
-    
+    /*
+     * Contains the game loop
+     */
     @Override
     public void run(){
         long beforeTime, afterTime, timeDiff, sleepTime;
@@ -136,7 +129,9 @@ public class BoardPanel extends JPanel implements Runnable{
         }
     }
     
-    
+    /*
+     * Updates game state
+     */
     private void gameUpdate(){
         int column = players[currentPlayer].getColumn();
         int actualHeight = players[currentPlayer].getY();
@@ -145,7 +140,6 @@ public class BoardPanel extends JPanel implements Runnable{
         if(!gameOver && !isPaused){
             // update
             if(desiredHeight <= actualHeight && desiredHeight > 0){
-//                players[currentPlayer].setX(0);
                 falling = false;
                 players[currentPlayer].setY(0);
                 
@@ -170,6 +164,9 @@ public class BoardPanel extends JPanel implements Runnable{
         }
     }
     
+    /*
+     * Renders images to off screen buffer
+     */
     private void gameRender(){        
         if(dbImage == null){
             dbImage = createImage(PWIDTH, PHEIGHT);
@@ -204,9 +201,9 @@ public class BoardPanel extends JPanel implements Runnable{
         }
     }
     
-    /***************************************************************************
+    /*
      * Actively render the buffer to the screen
-    ***************************************************************************/
+    */
     private void paintScreen(){
         Graphics g;
         try{
@@ -221,9 +218,9 @@ public class BoardPanel extends JPanel implements Runnable{
         }
     }
     
-    /***************************************************************************
+    /*
      * MouseAdapter used to set the x and y positions of the current players piece
-     **************************************************************************/
+     */
      class MouseAdapt extends MouseAdapter{
         @Override
         public void mouseClicked(MouseEvent e){
@@ -243,7 +240,6 @@ public class BoardPanel extends JPanel implements Runnable{
             if(!falling && !isPaused){
                 players[currentPlayer].setX((e.getX() / SIZE) * SIZE);
             }
-            //System.out.print("pieceX: " + pieceX);
         }
     }
      

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package connectfour;
 
 import java.awt.Graphics;
@@ -26,11 +22,11 @@ public class GamePiece {
     public static final byte PLAYER1 = 1;
     public static final byte PLAYER2 = 2;
     
-    /***********************************************
+    /*
      * Need to figure out a way to keep someone from 
      * inputing a value larger than 1. Maybe throw 
      * exception or use enum to prevent erroneous values
-     ***********************************************/
+     */
     public GamePiece(byte _player, byte _color){
         player = _player;
         color = _color;

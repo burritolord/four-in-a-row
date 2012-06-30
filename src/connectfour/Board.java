@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package connectfour;
 
 import java.awt.Graphics;
@@ -9,14 +5,13 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
- *
  * @author zesty
  */
 public class Board {
     private byte[][] board;
     private byte[] heightPosition;
     private Image image = new ImageIcon("../images/boardimage.png").getImage();
-    
+    	
     private static final int WIDTH = 7;
     private static final int HEIGHT = 6;
     
@@ -26,10 +21,10 @@ public class Board {
         clear();
     }
     
-    /*****************************************
+    /*
      * Return boolean indicating whether or not
      * the move was successful
-     *****************************************/
+     */
     public boolean placePiece(GamePiece player){
         int column = player.getColumn();
         if(heightPosition[column] >= 0){
@@ -37,10 +32,6 @@ public class Board {
             return true;
         }
         return false;
-    }
-    
-    public byte[][] getBoardGrid(){
-        return board.clone();
     }
     
     public void draw(Graphics g, GamePiece[] players){
@@ -69,14 +60,10 @@ public class Board {
         }
     }
     
-    // not tested
     public boolean checkWinCondition(int lastMove){
         byte piece = board[heightPosition[lastMove]+1][lastMove];
         int columnHeight = board.length - (heightPosition[lastMove]+1);
         int checkWidth = board[0].length - 3;
-//        int xIntercept = (heightPosition[lastMove]+1) - lastMove;
-//        int yIntercept = -xIntercept;
-//        boolean flag = true;
                 
         // check vertical
         if(columnHeight >=4 && 
@@ -142,7 +129,7 @@ public class Board {
         return image;
     }
     
-    /***************************************************************************
+    /*
      * Print string representation of board with height on bottom. Example
      * below shows player1 went in column 1 and player2 in column 4
      * 0000000
@@ -152,7 +139,7 @@ public class Board {
      * 0000000
      * 0100200
      * 5455455
-     **************************************************************************/
+     */
     @Override
     public String toString(){
         String returnVal = "";
