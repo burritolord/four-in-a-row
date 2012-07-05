@@ -10,8 +10,8 @@ import javax.swing.ImageIcon;
  * @author zesty
  */
 public class GamePiece {
-    private Image red = new ImageIcon("../images/redpiece.gif").getImage().getScaledInstance(SIZE, SIZE, Image.SCALE_DEFAULT);
-    private Image black = new ImageIcon("../images/blackpiece.gif").getImage().getScaledInstance(SIZE, SIZE, Image.SCALE_DEFAULT);
+    private Image red = new ImageIcon("../images/red-disk.png").getImage();
+    private Image black = new ImageIcon("../images/black-disk.png").getImage();
     private Point point;
     private byte player;
     private byte color;

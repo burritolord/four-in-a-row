@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 public class Board {
     private byte[][] board;
     private byte[] heightPosition;
-    private Image image = new ImageIcon("../images/boardimage.png").getImage();
+    private Image image = new ImageIcon("../images/grid.png").getImage();
     	
     private static final int WIDTH = 7;
     private static final int HEIGHT = 6;
