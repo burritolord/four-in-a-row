@@ -21,7 +21,7 @@ import connectfour.Board;
  * About
  */
 public class Connect4Game extends JFrame implements WindowListener{
-    BoardPanel board;
+    private BoardPanel board;
     
     public static void main(String[] args){
         new Connect4Game();
@@ -35,12 +35,13 @@ public class Connect4Game extends JFrame implements WindowListener{
     public void initGui(){
         board = new BoardPanel(this);
         
-        add(board,BorderLayout.CENTER);
+        getContentPane().add(board,BorderLayout.CENTER);
 	addWindowListener(this);
-               
+        
+        getContentPane().setPreferredSize(new Dimension(board.getWidth(),board.getHeight()));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-        setSize(board.getWidth(),board.getHeight() + 20);
+        this.pack();
         setLocationRelativeTo(null);
         setVisible(true);
     }
